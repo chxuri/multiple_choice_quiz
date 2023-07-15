@@ -14,18 +14,11 @@ question_prompts = [
 ]
 
 
-correct_count = 0
-incorrect_count = 0 
-question_num = 0
 
+def question_answer(message, question_num):
 
-
-
-def question_answer(message):
-
-	global correct_count
-	global incorrect_count
-	global question_num
+	correct_count = 0 
+	incorrect_count = 0 
 
 	if question_num == 1:
 		if message.lower() == "a":
@@ -61,28 +54,22 @@ def question_answer(message):
 			print("\nPlease answer with a, b, or c \n")
 			question_answer(input("What color are strawberries?\n(a) Yellow\n(b) Red\n(c) Blue\n\n"))
 
+	if correct_count > incorrect_count:
+			print("You passed the test :) \nYou got", correct_count,"right and", incorrect_count ,"wrong!")
+
+	if correct_count < incorrect_count:
+		print("You failed the test :(  \nYou got", correct_count ,"right and", incorrect_count ,"wrong!")
+
 
 
 def quiz(): 
-	global correct_count
-	global incorrect_count
-	global question_num
 	
 	if y_n or play_again == "y":
-			question_num += 1 
-			question_answer(input("\nWhat color are apples?\n(a) Red/Green\n(b) Purple\n(c) Orange\n\n"))
+			question_answer(input("\nWhat color are apples?\n(a) Red/Green\n(b) Purple\n(c) Orange\n\n"), 1)
 
-			question_num += 1  
-			question_answer(input("\nWhat color are bananas?\n(a) Teal\n(b) Magenta\n(c) Yellow\n\n"))
+			question_answer(input("\nWhat color are bananas?\n(a) Teal\n(b) Magenta\n(c) Yellow\n\n"), 2)
 
-			question_num += 1 
-			question_answer(input("\nWhat color are strawberries?\n(a) Yellow\n(b) Red\n(c) Blue\n\n"))
-
-			if correct_count > incorrect_count:
-				print("You passed the test :) \nYou got", correct_count,"right and", incorrect_count ,"wrong!")
-
-			if correct_count < incorrect_count:
-				print("You failed the test :(  \nYou got", correct_count ,"right and", incorrect_count ,"wrong!")
+			question_answer(input("\nWhat color are strawberries?\n(a) Yellow\n(b) Red\n(c) Blue\n\n"), 3)
 
 			play_again = input("Would you like to play again? (y/n): ")
 
@@ -102,4 +89,5 @@ def quiz():
 y_n = input("Would you like to take a quiz? (y/n): ")
 quiz()
 			
+
 
